@@ -160,34 +160,34 @@ function init () {
 
         })
     }
-    if ( document.getElementById('calculateSimpleTax') ) {
+    if ( document.getElementById('calculateSimpTax') ) {
         const p = document.getElementById('p');
         const n = document.getElementById('n');
         let i = document.getElementById('i');
         const I = document.getElementById('I');
-
         const paymentTerm = document.getElementById('paymentTerm');
 
-        document.getElementById('calculateSimpleTax').addEventListener('click', event => {
-
-            let n2 = isjSimple(paymentTerm.value , parseInt(n.value));
-
+        document.getElementById('calculateSimpTax').addEventListener('click', event => {
+            event.preventDefault();
+            n2 = nType(parseInt(paymentTerm.value), parseInt(n.value)) 
             if ( p.value && n.value && I.value && i.value ){
                 messageError('todos los campos están llenos');
-            }
+            }else{
+                if ( p.value && n.value && I.value && !i.value) {
+                    i.value = calculateSimpleTax(0, parseFloat(p.value), parseInt(n.value)*n2, parseFloat(I.value), 0);
+                }
                 
-            if ( p.value && n.value && I.value ) {
-                // CALCULAR i=I/(pn)
-                let tempI = calculateSimpleTax(0, parseFloat(p.value), n2, parseFloat(I.value), 0);
-            }
-            
-            if ( p.value && n.value && String(_i) ) {
-                // CALCULAR I
-                I.value = calculateSimpleTax(1, parseFloat(p.value), ne, 0, _i);
-            } else if ( n.value && I.value && String(_i) ) {
-                // CALCULAR P
-                p.value = calculateSimpleTax(3, 0, parseInt(n.value), parseFloat(I.value), _i);
-            }
+                if ( p.value && n.value && i.value && !I.value) {
+                    // CALCULAR I
+                    I.value = calculateSimpleTax(1, parseFloat(p.value), parseInt(n.value)*n2, 0, parseInt(i.value));
+                }if ( p.value && I.value && i.value && !n.value) {
+                    // CALCULAR n
+                    n.value = calculateSimpleTax(2, parseFloat(p.value), n2, parseInt(I.value), parseInt(i.value));
+                }else if ( n.value && I.value && i.value && !p.value) {
+                    // CALCULAR P
+                    p.value = calculateSimpleTax(3, 0, parseInt(n.value)*n2, parseFloat(I.value), parseInt(i.value));
+                }
+            }            
         })
         
     }
@@ -642,11 +642,19 @@ function saveInLocal(annualPaymentType, p , n, s, i, a, template) {
 function isj( taxType ) {
     return taxType=='Nominal' || taxType=='Vencido' || taxType=='Capitalizable' || taxType=='Convertible' ? true : false
 }
-function isjSimple( nType, n ) {
-    return nType==(n*30)/360 || nType==(n*31)/360 || nType==(n*31)/365 || nType==(n*30)/360 ? true : false
+function nType(value, n) {
+    let result = 0
+    switch ( value ) {
+        case 1:
+            return (30/360)
+        case 2:
+            return (31/360)
+        case 3:
+            return (31/365)
+        case 4:
+;           return (30/365)
+    }
 }
-//I=Pin
-// I=2'500(30%)(150/360)
 
 function convertTax ( type, i, n, j, m ) {
     switch (type) {
@@ -686,27 +694,28 @@ function calculateTax ( type, p, n, s, i ) {
     }
     return result.toFixed(3)
 }
-function calculateSimpleTax ( type, p, n, I, i ) {
+function calculateSimpleTax (type, p, n, I, i) {
     let result = 0
     switch ( type ) {
         case 0:
             // CALCULAR i
-            i = I/(p*n);
-            return i*100;
+            i = (I-p)/(p*n);
+            i = i*100
+            return i.toFixed(3);
         case 1:
             // Calcular I
             i = i/100;
-            I = p*i*n;
+            I = p*(1+(i*n));
             return I.toFixed(3);
         case 2:
             // Calcular n
             i = i/100;
-            n = I/(p*i);
-            return Math.round(n);
+            n1 = (I-p)/(p*i*n);
+            return Math.round(n1);
         case 3:
             //CALCULAR P
             i = i/100;
-            result = I/(i*n);
+            result = I/(1+(i*n));
     }
     return result.toFixed(3)
 }
