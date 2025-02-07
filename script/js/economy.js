@@ -106,6 +106,8 @@ function init () {
         const n = document.getElementById('n');
         const s = document.getElementById('s');
         let i = document.getElementById('i');
+        const I = document.getElementById('I');
+
         const taxType = document.getElementById('taxType');
         const taxTerm = document.getElementById('taxTerm');
         const paymentTerm = document.getElementById('paymentTerm');
@@ -117,7 +119,7 @@ function init () {
             }
             
             if ( p.value && n.value && s.value ) {
-                // CALCULAR I
+                // CALCULAR i
                 let tempI = calculateTax(0, parseFloat(p.value), parseInt(n.value), parseFloat(s.value), 0);
                 if ( isj( taxType.value ) ) {
                     i.value = convertTax( '0', tempI, parseInt(taxTerm.value), 0, 0 ).toPrecision(2);
@@ -155,6 +157,37 @@ function init () {
                 p.value = calculateTax(3, 0, parseInt(n.value), parseFloat(s.value), _i);
 
             }
+
+        })
+    }
+    if ( document.getElementById('calculateSimpleTax') ) {
+        const p = document.getElementById('p');
+        const n = document.getElementById('n');
+        let i = document.getElementById('i');
+        const I = document.getElementById('I');
+
+        const paymentTerm = document.getElementById('paymentTerm');
+
+        document.getElementById('calculateSimpleTax').addEventListener('click', event => {
+
+            let n2 = isjSimple(paymentTerm.value , parseInt(n.value));
+
+            if ( p.value && n.value && I.value && i.value ){
+                messageError('todos los campos están llenos');
+            }
+                
+            if ( p.value && n.value && I.value ) {
+                // CALCULAR i=I/(pn)
+                let tempI = calculateSimpleTax(0, parseFloat(p.value), n2, parseFloat(I.value), 0);
+            }
+            
+            if ( p.value && n.value && String(_i) ) {
+                // CALCULAR I
+                I.value = calculateSimpleTax(1, parseFloat(p.value), ne, 0, _i);
+            } else if ( n.value && I.value && String(_i) ) {
+                // CALCULAR P
+                p.value = calculateSimpleTax(3, 0, parseInt(n.value), parseFloat(I.value), _i);
+            }
         })
         
     }
@@ -165,6 +198,7 @@ function init () {
         const n = document.getElementById('n');
         const s = document.getElementById('s');
         const i = document.getElementById('i');
+
         const taxType = document.getElementById('taxType');
         const taxTerm = document.getElementById('taxTerm');
         const paymentTerm = document.getElementById('paymentTerm');
@@ -608,6 +642,11 @@ function saveInLocal(annualPaymentType, p , n, s, i, a, template) {
 function isj( taxType ) {
     return taxType=='Nominal' || taxType=='Vencido' || taxType=='Capitalizable' || taxType=='Convertible' ? true : false
 }
+function isjSimple( nType, n ) {
+    return nType==(n*30)/360 || nType==(n*31)/360 || nType==(n*31)/365 || nType==(n*30)/360 ? true : false
+}
+//I=Pin
+// I=2'500(30%)(150/360)
 
 function convertTax ( type, i, n, j, m ) {
     switch (type) {
@@ -644,6 +683,30 @@ function calculateTax ( type, p, n, s, i ) {
             //CALCULAR P
             i = i/100;
             result = s/Math.pow(1+i, n);
+    }
+    return result.toFixed(3)
+}
+function calculateSimpleTax ( type, p, n, I, i ) {
+    let result = 0
+    switch ( type ) {
+        case 0:
+            // CALCULAR i
+            i = I/(p*n);
+            return i*100;
+        case 1:
+            // Calcular I
+            i = i/100;
+            I = p*i*n;
+            return I.toFixed(3);
+        case 2:
+            // Calcular n
+            i = i/100;
+            n = I/(p*i);
+            return Math.round(n);
+        case 3:
+            //CALCULAR P
+            i = i/100;
+            result = I/(i*n);
     }
     return result.toFixed(3)
 }

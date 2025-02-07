@@ -44,28 +44,17 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <label for="n">Periodos:</label>
+                    <label for="n">Tiempo:</label>
                     <div class="input-group">
                         <input type="text" id="n" class="form-control">
                         <div class="input-group-append">
                             <select id="paymentTerm" class="form-control">
-                                <option value="12" selected>Meses</option>
-                                <option value="6">Bimestres</option>
-                                <option value="4">Trimestres</option>
-                                <option value="3">Cuatrimestres</option>
-                                <option value="2">Semestres</option>
-                                <option value="1">Años</option>
+                                <option value="1" selected>Comercial</option>
+                                <option value="2">Bancario</option>
+                                <option value="3">Exacto</option>
+                                <option value="4">Ideal</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <label for="s">Valor Futuro:</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                        </div>
-                        <input type="text" id="s" class="form-control">
                     </div>
                 </div>
             </div>
@@ -79,36 +68,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <label for="taxType"></label>
-                    <select id="taxType" class="form-control">
-                        <option value="" disabled style="font-weight: bold;">Tasas en I</option>
-                        <option value="Efectivo" selected>Efectivo</option>
-                        <option value="Periodico">Periodico</option>
-                        <option value="" disabled style="font-weight: bold;">Tasas en J</option>
-                        <option value="Nominal">Nominal</option>
-                        <option value="Vencido">Vencido</option>
-                        <option value="Capitalizable">Capitalizable</option>
-                        <option value="Convertible">Convertible</option>
-                    </select>
-                </div>
-                <div class="col-4 ">
-                    <label for="taxTerm"></label>
-                    <select id="taxTerm" class="form-control">
-                        <option value="12" selected>Mensual</option>
-                        <option value="6">Bimestral</option>
-                        <option value="4">Trimestral</option>
-                        <option value="3">Cuatrimestral</option>
-                        <option value="2">Semestral</option>
-                        <option value="1">Anual</option>
-                    </select>
-                </div>
-
             </div>
             <div class="row mb-3"></div>
+                <div class="col-4">
+                    <label for="I">Interés Simple:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" id="I" class="form-control">
+                    </div>
+                </div>
                 <div class="row d-flex justify-content-end">
                     <div class="col-3 d-flex justify-content-end">
-                        <button id="calculateTax" class="btn btn-success float-left"> Calcular Faltante Compuesto</button>
+                        <button id="calculateSimpTax" class="btn btn-success float-left"> Calcular Faltante</button>
                     </div>
                 </div>
             </div>
