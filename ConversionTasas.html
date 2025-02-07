@@ -2,38 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Interes Compuesto</title>
+    <title>Calculadora - Ingeniería Económica</title>
     <link rel="shortcut icon" href="script/img/calculadora.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="script/js/economy.js"></script>
 </head>
-<body>
+<body style='font-family: Montserrat, serif; font-optical-sizing: auto; font-style: normal;'>
     <div class="container-fluid">
         <div class="row vh-100">
             <div class="col-md-3 shadow-lg p-3 d-flex flex-column" style="height: 100vh;">
-                <h2 class="text-center">CALCULADORA DE INTERÉS COMPUESTO</h2>
+                
                 <nav class="nav nav-pills flex-column flex-grow-1">
-                    <a class="nav-link active" aria-current="page" href="taxConvert.html">Conversión de tasas</a>
-                    <a class="nav-link" href="equalities.html">Equivalencias de Tasas</a>
-                    <a class="nav-link active" href="calculeTaxes.html">Calcular Interes Compuesto</a>
-                    <a class="nav-link active" href="calculeSimpleTaxes.html">Calcular Interes Simple</a>
-                    <a class="nav-link" href="annualPayment.html">Anualidades</a>
-                    <a class="nav-link" href="amortization.html">Amortización</a>
-                    <a class="nav-link" href="capitalization.html">Capitalización</a>
+                    <a class="nav-link active" aria-current="page" href="ConversionTasas.html">Conversión de tasas</a>
+                    <a class="nav-link" href="Equivalencia.html">Equivalencias de Tasas</a>
+                    <a class="nav-link" href="InteresCompuesto.html">Calcular Interes Compuesto</a>
+                    <a class="nav-link" href="InteresSimple.html">Calcular Interes Simple</a>
+                    <a class="nav-link" href="Anualidades.html">Anualidades</a>
+                    <a class="nav-link" href="Amortizacion.html">Amortización</a>
+                    <a class="nav-link" href="Capitalizacion.html">Capitalización</a>
                 </nav>
-                <small class="text-muted">Julian Mateo Mogollon 20242678008</small> <br>
-                <small class="text-muted">Alexander Montaña Diaz  20242678015</small> <br>
-                <small class="text-muted">Tatiana Andrea Arevalo 20242678041</small> <br>
+                <small class="text-muted text-center" >INTEGRANTES</small>
+                <small class="text-muted">Julian Mateo Mogollon 20242678008</small>
+                <small class="text-muted">Alexander Montaña Diaz  20242678015</small>
+                <small class="text-muted">Tatiana Andrea Arevalo 20242678041</small> 
             </div>
             
-            <div class="col-md-9 p-3" id="content">
+    <div class="col-md-9 p-3" id="content">
+        <h2 class="text-center">Calculadora - Ingeniería Económica</h2><br><br><br>
         <form action="">
             <div class="row mb-3">
-                <div class="col-12 ">
+                <div class="col-6 m-auto text-center">
                     <label for="operation">Operación</label>
                     <select id="operation" class="form-control">
                         <option value="0" selected>Convertir de i a j</option>
@@ -41,8 +46,8 @@
                     </select>
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-3 ">
+            <div class="row mb-3 text-center" style="margin: 0 3rem;">
+                <div class="col-6 text-center">
                     <label for="i">I:</label>
                     <div class="input-group">
                         <input type="text" id="i" class="form-control">
@@ -51,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-6">
                     <label for="n">periodo n</label>
                     <select id="n" class="form-control">
                         <option value="12" selected>Mensual</option>
@@ -62,7 +67,10 @@
                         <option value="1">Anual</option>
                     </select>
                 </div>
-                <div class="col-3">
+                
+            </div>
+            <div class="row mb-3 text-center" style="margin: 0 3rem;">
+                <div class="col-6">
                     <label for="j">J:</label>
                     <div class="input-group">
                         <input type="text" id="j" class="form-control">
@@ -71,7 +79,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="col-3 ">
+                <div class="col-6 ">
                     <label for="m">periodo m</label>
                     <select id="m" class="form-control">
                         <option value="12" selected>Mensual</option>
@@ -84,8 +92,8 @@
                 </div>
             </div>
             <div class="row d-flex justify-content-end">
-                <div class="col-3 d-flex justify-content-end">
-                    <button id="convertTax" class="btn btn-success float-left"> Convertir</button>
+                <div class="col-12 d-flex justify-content-center">
+                    <button id="convertTax" class="btn btn-primary float-left" style="background-color: #4d82bc;"> Convertir</button>
                 </div>
             </div>
         </form>
