@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Calculadora - Ingeniería Económica</title>
@@ -8,14 +9,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        h2 {
+            color: #4d82bc;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: #4d82bc;
+            font-weight: 500;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #81a5cc;
+        }
+
+        .nav-link:hover {
+            color: #376998;
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="script/js/Calculadora.js"></script>
 </head>
+
 <body style='font-family: Montserrat, serif; font-optical-sizing: auto; font-style: normal;'>
     <div class="container-fluid">
         <div class="row vh-100">
@@ -29,91 +52,94 @@
                     <a class="nav-link" href="Amortizacion.html">Amortización</a>
                     <a class="nav-link" href="Capitalizacion.html">Capitalización</a>
                 </nav>
-                <small class="text-muted text-center" >INTEGRANTES</small>
+                <small class="text-muted text-center"><strong>INTEGRANTES</strong></small>
                 <small class="text-muted">Julian Mateo Mogollon 20242678008</small>
-                <small class="text-muted">Alexander Montaña Diaz  20242678015</small>
-                <small class="text-muted">Tatiana Andrea Arevalo 20242678041</small> 
+                <small class="text-muted">Alexander Montaña Diaz 20242678015</small>
+                <small class="text-muted">Tatiana Andrea Arevalo 20242678041</small>
             </div>
-            
-    <div class="col-md-9 p-3" id="content">
-        <h2 class="text-center">Calculadora - Ingeniería Económica</h2><br><br><br>
-        <form action="">
-            <div class="row mb-3">
-                <div class="col-3">
-                    <label for="initialTax">Tasa Inicial:</label>
-                    <div class="input-group">
-                        <input type="text" id="initialTax" class="form-control">
-                        <div class="input-group-append">
-                            <span class="input-group-text">%</span>
+
+            <div class="col-md-9 p-3" id="content">
+                <h2 class="text-center">Calculadora - Ingeniería Económica</h2><br><br><br>
+                <form action="">
+                    <div class="row text-center" style="margin: 4rem 2.8rem;">
+                        <div class="col-6">
+                            <label for="initialTax">Tasa Inicial:</label>
+                            <div class="input-group">
+                                <input type="text" id="initialTax" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label for="taxType"></label>
+                            <select id="taxType" class="form-control">
+                                <option value="" disabled style="font-weight: bold;">Tasas en I</option>
+                                <option value="Efectivo" selected>Efectivo</option>
+                                <option value="Periodico">Periodico</option>
+                                <option value="" disabled style="font-weight: bold;">Tasas en J</option>
+                                <option value="Nominal">Nominal</option>
+                                <option value="Vencido">Vencido</option>
+                                <option value="Capitalizable">Capitalizable</option>
+                                <option value="Convertible">Convertible</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="taxTerm"></label>
+                            <select id="taxTerm" class="form-control">
+                                <option value="12" selected>Mensual</option>
+                                <option value="6">Bimestral</option>
+                                <option value="4">Trimestral</option>
+                                <option value="3">Cuatrimestral</option>
+                                <option value="2">Semestral</option>
+                                <option value="1">Anual</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row text-center" style="margin: 4rem 2.8rem;">
+                        <div class="col-6">
+                            <label for="expectedTaxType">Tasa deseada:</label>
+                            <select id="expectedTaxType" class="form-control">
+                                <option value="" disabled style="font-weight: bold;">Tasas en I</option>
+                                <option value="Efectivo" selected>Efectivo</option>
+                                <option value="Periodico">Periodico</option>
+                                <option value="" disabled style="font-weight: bold;">Tasas en J</option>
+                                <option value="Nominal">Nominal</option>
+                                <option value="Vencido">Vencido</option>
+                                <option value="Capitalizable">Capitalizable</option>
+                                <option value="Convertible">Convertible</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="expectedTaxTerm"></label>
+                            <select id="expectedTaxTerm" class="form-control">
+                                <option value="12" selected>Mensual</option>
+                                <option value="6">Bimestral</option>
+                                <option value="4">Trimestral</option>
+                                <option value="3">Cuatrimestral</option>
+                                <option value="2">Semestral</option>
+                                <option value="1">Anual</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <label for="taxType"></label>
-                    <select id="taxType" class="form-control">
-                        <option value="" disabled style="font-weight: bold;">Tasas en I</option>
-                        <option value="Efectivo" selected>Efectivo</option>
-                        <option value="Periodico">Periodico</option>
-                        <option value="" disabled style="font-weight: bold;">Tasas en J</option>
-                        <option value="Nominal">Nominal</option>
-                        <option value="Vencido">Vencido</option>
-                        <option value="Capitalizable">Capitalizable</option>
-                        <option value="Convertible">Convertible</option>
-                    </select>
-                </div>
-                <div class="col-3 ">
-                    <label for="taxTerm"></label>
-                    <select id="taxTerm" class="form-control">
-                        <option value="12" selected>Mensual</option>
-                        <option value="6">Bimestral</option>
-                        <option value="4">Trimestral</option>
-                        <option value="3">Cuatrimestral</option>
-                        <option value="2">Semestral</option>
-                        <option value="1">Anual</option>
-                    </select>
-                </div>
-                <div class="col-3 d-flex justify-content-end h-50">
-                    <br>
-                    <button id="equality" class="btn btn-success float-left"> Calcular Equivalencia</button>
-                </div>
+                    <div class="row mt-5">
+                        <div class="col-12 d-flex justify-content-center ">
+                            <br>
+                            <button id="equality" class="btn btn-primary" style="background-color: #4d82bc;"> Calcular
+                                Equivalencia</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mt-3 mb-3" style="margin: 4rem 2.8rem;">
+                        <div class="col-12">
+                            <label>Tasa equivalente:</label>
+                            <br>
+                            <small id="equialityTax"></small>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row mb-3">
-                <div class="col-3">
-                    <label for="expectedTaxType">Tasa deseada:</label>
-                    <select id="expectedTaxType" class="form-control">
-                        <option value="" disabled style="font-weight: bold;">Tasas en I</option>
-                        <option value="Efectivo" selected>Efectivo</option>
-                        <option value="Periodico">Periodico</option>
-                        <option value="" disabled style="font-weight: bold;">Tasas en J</option>
-                        <option value="Nominal">Nominal</option>
-                        <option value="Vencido">Vencido</option>
-                        <option value="Capitalizable">Capitalizable</option>
-                        <option value="Convertible">Convertible</option>
-                    </select>
-                </div>
-                <div class="col-3 ">
-                    <label for="expectedTaxTerm"></label>
-                    <select id="expectedTaxTerm" class="form-control">
-                        <option value="12" selected>Mensual</option>
-                        <option value="6">Bimestral</option>
-                        <option value="4">Trimestral</option>
-                        <option value="3">Cuatrimestral</option>
-                        <option value="2">Semestral</option>
-                        <option value="1">Anual</option>
-                    </select>
-                </div>
-            </div>
-            <hr>
-            <div class="row mb-3">
-                <div class="col-12">
-                    <label class="text-muted">Tasa equivalente:</label> 
-                    <br>
-                    <small id="equialityTax"></small>
-                </div>
-            </div>
-        </form>
-    </div>
 </body>
+
 </html>
-
-
