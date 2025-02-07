@@ -346,7 +346,7 @@ function init () {
                 return false;
             }
 
-            saveInLocal(annualPaymentType, p, n, s, i, a, 'amortization');
+            saveInLocal(annualPaymentType, p, n, s, i, a, 'Amortizacion');
             
         });
 
@@ -358,7 +358,7 @@ function init () {
                 return false;
             }
 
-            saveInLocal(annualPaymentType, p, n, s, i, a, 'capitalization');
+            saveInLocal(annualPaymentType, p, n, s, i, a, 'Capitalizacion');
             
         });
 
